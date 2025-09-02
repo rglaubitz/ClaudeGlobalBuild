@@ -64,7 +64,7 @@ The system leverages Model Context Protocol servers for extended capabilities:
 
 ### Task Management
 
-- Check `.claude/TASK.md` for current tasks (though currently empty)
+- Check `.claude/TASK.md` for understanding of Task-management in the(though currently empty)
 - Tasks should be tracked with clear descriptions and dates
 - Mark tasks complete immediately after finishing
 
