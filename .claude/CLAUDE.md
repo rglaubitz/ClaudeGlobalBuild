@@ -14,27 +14,43 @@ This is the **Claude Global Project** - a comprehensive system to transform Clau
 
 #### Core System Architecture
 
-1. **Command Center** (`~/.claude/`) - Global configuration persisting across projects
+1. **Command Center** (`~/.claude/`) - Global configuration persisting across ALL projects
 2. **Learning Pipeline** (`~/claude-research/`) - Hourly research → Daily compression → Weekly synthesis
 3. **Multi-Agent System** - Planner, Researcher, Implementer, Tester, Documenter, Reflector agents
 4. **Event Bus** - NATS JetStream for inter-agent communication
 5. **Resilience Layer** - Circuit breakers, health monitoring, automatic rollbacks
 
+**IMPORTANT**: This project configures the GLOBAL `~/.claude/` directory that will be available across ALL future Claude Code sessions, not just this project folder.
+
+#### 📋 Task Management & Implementation
+
+**CRITICAL**: For all task execution and phase management, refer to:
+- **Primary**: `.claude/TASK.md` - Current phase tracker, SOP, and execution workflow
+- **Details**: `ClaudeGlobal/task-management/` - All phase documentation
+
 #### Implementation Phases (20 hours total)
 
-- **Phase 1**: Infrastructure Foundation (MCP servers, Docker, Pass/GPG)
-- **Phase 2**: Command System Development (9 core commands with discovery)
-- **Phase 3**: Automation & Scheduling (Apache Airflow replacing cron)
-- **Phase 4**: Event Bus & Resilience (NATS, OpenTelemetry, chaos engineering)
-- **Phase 5**: Learning Pipeline (Federated learning with Flower)
-- **Phase 6**: Validation & Monitoring (SLOs, OpenTelemetry tracing)
+The project follows a 6-phase implementation with **two-tier task structure**:
+- **Original Tasks** (11 hours): Foundation that MUST be completed first
+- **Enhanced Tasks** (9 hours): Production features added AFTER original tasks
+
+**Phases**:
+- **Phase 1**: Infrastructure Foundation (MCP servers, Docker, Pass/GPG) - 3 hours total
+- **Phase 2**: Command System Development (9 core commands with discovery) - 1.5 hours total
+- **Phase 3**: Automation & Scheduling (Apache Airflow replacing cron) - 4 hours total
+- **Phase 4**: Event Bus & Resilience (NATS JetStream, OpenTelemetry) - 3.5 hours total
+- **Phase 5**: Learning Pipeline (Federated learning with Flower) - 4.5 hours total
+- **Phase 6**: Validation & Monitoring (SLOs, OpenTelemetry tracing) - 3 hours total
+
+**Implementation Strategy**: Tasks marked as duplicates between original and enhanced should be done ONCE only. See `ClaudeGlobal/task-management/implementation-strategy.md` for overlap resolution.
 
 #### Key Documentation
 
-- **Master Blueprint**: `ClaudeGlobal/claude-code-ultimate-config.md` (1290 lines)
-- **Task Management**: `ClaudeGlobal/task-management/` (phased implementation)
+- **Task Tracker**: `.claude/TASK.md` - ALWAYS check this first for current phase
+- **Task Details**: `ClaudeGlobal/task-management/` (all phase documentation)
 - **Implementation Strategy**: `ClaudeGlobal/task-management/implementation-strategy.md`
 - **MCP Documentation**: `ClaudeGlobal/mcp-documentation/` (server guides)
+- **Configuration Reference**: `ClaudeGlobal/claude-code-ultimate-config.md`
 
 #### The Unstoppable Questions Framework
 
@@ -69,23 +85,35 @@ Always ask these breakthrough questions:
 
 ### ✅ Task Completion & Management
 
+#### Primary Task Management
+
+**ALWAYS START HERE**: Check `.claude/TASK.md` for current phase status and execution workflow.
+
+The TASK.md file contains:
+
+- Current phase and progress tracker
+- Standard Operating Procedure (SOP) for each phase
+- Task checklists (both original and enhanced)
+- Validation criteria
+- Emergency recovery procedures
+
 #### Task Execution Workflow
 
 Follow this Standard Operating Procedure (SOP) for each implementation phase:
 
-1. **📖 Read Phase Review** → `phase-X-*/phase-review.md` (understand base requirements)
-2. **🚀 Read Enhanced Review** → `phase-X-*/phase-review-enhanced.md` (production features)
-3. **📐 Study Implementation Strategy** → `implementation-strategy.md` (Day X instructions)
-4. **✅ Execute Original Tasks** → `phase-X-*/task-list.md` (foundation - 11 hours)
-5. **⚡ Execute Enhanced Tasks** → `phase-X-*/task-list-enhanced.md` (production - 9 hours)
-6. **🔍 Validation & Review** → Complete checklist, await user grade
+1. **📖 Read Phase Review** → `ClaudeGlobal/task-management/phase-X-*/phase-review.md` (understand base requirements)
+2. **🚀 Read Enhanced Review** → `ClaudeGlobal/task-management/phase-X-*/phase-review-enhanced.md` (production features)
+3. **📐 Study Implementation Strategy** → `ClaudeGlobal/task-management/implementation-strategy.md` (overlap resolution)
+4. **✅ Execute Original Tasks** → `ClaudeGlobal/task-management/phase-X-*/task-list.md` (foundation FIRST)
+5. **⚡ Execute Enhanced Tasks** → `ClaudeGlobal/task-management/phase-X-*/task-list-enhanced.md` (additions AFTER)
+6. **🔍 Validation & Review** → Complete checklist in TASK.md, await user grade
 7. **➡️ Proceed to Next Phase** → Only after approval
 
-#### Task Management in TASK.md
+#### Critical Implementation Notes
 
-- **Check `TASK.md`** before starting any work to see current phase and progress
-- **Mark tasks complete** immediately after finishing (use checkboxes)
-- **Add discovered tasks** under "Discovered During Implementation" section
+- **Enhanced tasks are ADDITIONS, not replacements** - always do original tasks first
+- **Some tasks appear in BOTH lists** - do these ONCE only (see implementation-strategy.md)
+- **Mark tasks complete** immediately after finishing (update TASK.md checkboxes)
 - **Document blockers** with clear descriptions and potential solutions
 - **Track time variance** between estimated and actual completion
 
@@ -187,8 +215,8 @@ claude mcp list
 # Check available Serena memories
 mcp__serena__list_memories
 
-# Verify file/directory exists
-ls [path]
+# Verify global Claude directory exists
+ls ~/.claude/
 
 # Test commands with dry-run when available
 [command] --dry-run
