@@ -46,16 +46,19 @@ ClaudeGlobalProject/
 - **PRD**: `claude-code-ai-agent-prd.md` - Complete system design
 - **Config Guide**: `claude-code-ultimate-config.md` - Setup instructions
 
-### PRP System
-- `/generate-prp` - Create implementation plans
-- `/execute-prp` - Execute plans with validation
+### TaskMaster System
+- `/generate-prd` - Parse PRD into structured tasks
+- `/execute-tasks` - Work through tasks systematically
+- `/task-next` - Get next task to implement
+- `/task-status` - View project progress
 
 ### Development Flow
-1. Check TASK.md for current phase
-2. Review phase documentation in `ClaudeGlobal/task-management/`
-3. Execute original tasks first, then enhanced
-4. Validate with `~/.claude/validation/master_validator.py`
-5. Update completion reports
+1. Create PRD in `.taskmaster/docs/prd.txt`
+2. Parse with `task-master parse-prd prd.txt`
+3. Analyze complexity: `task-master analyze-complexity`
+4. Expand tasks: `task-master expand --all`
+5. Execute: `task-master next` → implement → mark complete
+6. Validate with `~/.claude/validation/master_validator.py`
 
 ## Project-Specific Notes
 
@@ -82,3 +85,7 @@ ClaudeGlobalProject/
 
 ---
 *Project-specific configuration. Global settings: `~/CLAUDE.md`*
+
+## Task Master AI Instructions
+**Import Task Master's development workflow commands and guidelines, treat as if import is in the main CLAUDE.md file.**
+@./.taskmaster/CLAUDE.md

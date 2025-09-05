@@ -1,0 +1,14 @@
+# Test PRD for TaskMaster Integration
+
+## Overview
+This is a test PRD to verify TaskMaster functionality after migrating from the PRP system.
+
+## Requirements
+1. Create a simple test task
+2. Add a validation step
+3. Document the process
+
+## Success Criteria
+- TaskMaster can parse this PRD
+- Tasks are generated with proper structure
+- Dependencies are correctly set
